@@ -20,7 +20,7 @@ model_urls = {('unet', 'R231'): ('https://github.com/JoHof/lungmask/releases/dow
                   'https://github.com/JoHof/lungmask/releases/download/v0.0/unet_r231covid-0de78a7e.pth', 3)}
 
 
-def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessing=True, noHU=False, gpu=False, gpu_id=0):
+def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessing=True, noHU=False, gpu=False, cuda=0):
     if model is None:
         model = get_model('unet', 'R231')
 
@@ -34,7 +34,8 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
         device = torch.device('cpu')
     else:
         if gpu:
-            device = torch.device('cuda:'+str(gpu_id))
+            c_device = 'cuda:' + str(cuda)
+            device = torch.device(c_device)
         else:
             batch_size = 1
             device = torch.device('cpu')
