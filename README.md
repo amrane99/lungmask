@@ -27,7 +27,7 @@ This paper contains a detailed description of the dataset used, a thorough evalu
 
 ## Installation
 ```
-pip install git+https://github.com/JoHof/lungmask
+pip install git+https://github.com/amrane99/lungmask
 ```
 On Windows, depending on your setup, it may be necessary to install torch beforehand: https://pytorch.org
 
