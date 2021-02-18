@@ -22,7 +22,7 @@ model_urls = {('unet', 'R231'): ('https://github.com/amrane99/lungmask/releases/
 
 def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessing=True, noHU=False, gpu=False, cuda=0):
     if model is None:
-        model = get_model('unet', 'R231')
+        model = get_model('unet', 'LTRCLobes')
 
     inimg_raw = sitk.GetArrayFromImage(image)
     directions = np.asarray(image.GetDirection())
