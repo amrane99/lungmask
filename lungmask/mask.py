@@ -13,11 +13,11 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 warnings.filterwarnings("ignore", category=UserWarning)
 
 # stores urls and number of classes of the models
-model_urls = {('unet', 'R231'): ('https://github.com/JoHof/lungmask/releases/download/v0.0/unet_r231-d5d2fc3d.pth', 3),
-              ('unet', 'LTRCLobes'): (
-                  'https://github.com/JoHof/lungmask/releases/download/v0.0/unet_ltrclobes-3a07043d.pth', 6),
+model_urls = {('unet', 'R231'): ('https://github.com/amrane99/lungmask/releases/download/v1.0/unet_r231-d5d2fc3d.pth', 3),
+              ('unet', 'LTRCLobes'): ( 
+                  'https://github.com/amrane99/lungmask/releases/download/v1.0/unet_ltrclobes-3a07043d.pth', 6),
               ('unet', 'R231CovidWeb'): (
-                  'https://github.com/JoHof/lungmask/releases/download/v0.0/unet_r231covid-0de78a7e.pth', 3)}
+                  'https://github.com/amrane99/lungmask/releases/download/v1.0/unet_r231covid-0de78a7e.pth', 3)}
 
 
 def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessing=True, noHU=False, gpu=False, cuda=0):
