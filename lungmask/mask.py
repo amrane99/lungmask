@@ -55,7 +55,7 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
         sanity = [(tvolslices[x]>0.6).sum()>25000 for x in range(len(tvolslices))]
         tvolslices = tvolslices[sanity]
     torch_ds_val = utils.LungLabelsDS_inf(tvolslices)
-    dataloader_val = torch.utils.data.DataLoader(torch_ds_val, batch_size=batch_size, shuffle=False, num_workers=1,
+    dataloader_val = torch.utils.data.DataLoader(torch_ds_val, batch_size=batch_size, shuffle=False, num_workers=0,
                                                  pin_memory=False)
 
     timage_res = np.empty((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
@@ -65,8 +65,8 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
         for X in tqdm(dataloader_val):
             X = X.float().to(device)
             prediction = model(X)
-            # pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
-            pls = np.max(prediction.detach().cpu().numpy().astype(np.uint8), 0)[1]
+            pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
+            #pls = np.max(prediction.detach().cpu().numpy().astype(np.uint8), 0)[1]
             timage_res = np.vstack((timage_res, pls))
     print(timage_res.shape, pls.shape)
     #timage_res = timage_res[np.newaxis, ...]
