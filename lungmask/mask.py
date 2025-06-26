@@ -58,10 +58,8 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
     dataloader_val = torch.utils.data.DataLoader(torch_ds_val, batch_size=batch_size, shuffle=False, num_workers=1,
                                                  pin_memory=False)
 
-    timage_res = np.empty((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
-    
-    print(tvolslices[0].shape, tvolslices.shape)
-    # timage_res = np.empty_like((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
+    # timage_res = np.empty((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
+    timage_res = np.empty_like(tvolslices[0]), dtype=np.uint8)
     # print(tvolslices[0].shape)
 
     with torch.no_grad():
