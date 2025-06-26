@@ -207,10 +207,8 @@ def postrocessing(label_image, spare=[]):
     # will hold mapping from regionlabels to original labels
     region_to_lobemap = np.zeros((len(regionlabels) + 1,), dtype=np.uint8)
     for r in regions:
-        print(r.max_intensity, type(r.max_intensity))
-        print(r.label, type(r.label))
         if r.area > origlabels_maxsub[r.max_intensity]:
-            origlabels_maxsub[r.max_intensity] = r.area
+            origlabels_maxsub[int(r.max_intensity)] = r.area
             region_to_lobemap[r.label] = r.max_intensity
 
     for r in tqdm(regions):
