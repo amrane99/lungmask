@@ -59,7 +59,10 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
                                                  pin_memory=False)
 
     timage_res = np.empty((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
-    print(tvolslices[0].shape)
+    x_ = next(dataloader_val)
+    print(x.size())
+    # timage_res = np.empty_like((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
+    # print(tvolslices[0].shape)
 
     with torch.no_grad():
         for X in tqdm(dataloader_val):
