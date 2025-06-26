@@ -228,8 +228,8 @@ def postrocessing(label_image, spare=[]):
             regionmask[regionmask == r.label] = mapto
             # print(str(region_to_lobemap[r.label]) + ' -> ' + str(region_to_lobemap[mapto])) # for debugging
             if regions[regionlabels.index(mapto)].area == origlabels_maxsub[
-                regions[regionlabels.index(mapto)].max_intensity]:
-                origlabels_maxsub[regions[regionlabels.index(mapto)].max_intensity] += myarea
+                int(regions[regionlabels.index(mapto)].max_intensity)]:
+                origlabels_maxsub[int(regions[regionlabels.index(mapto)].max_intensity)] += myarea
             regions[regionlabels.index(mapto)].__dict__['_cache']['area'] += myarea
 
     outmask_mapped = region_to_lobemap[regionmask]
