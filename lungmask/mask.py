@@ -59,6 +59,7 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
                                                  pin_memory=False)
 
     timage_res = np.empty((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
+    print(tvolslices[0].shape)
 
     with torch.no_grad():
         for X in tqdm(dataloader_val):
@@ -66,9 +67,7 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
             prediction = model(X)
             # pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
             pls = np.max(prediction.detach().cpu().numpy().astype(np.uint8), 1)[1]
-            print(pls.shape, timage_res.shape)
-            print(np.squeeze(timage_res).shape)
-            timage_res = np.vstack((timage_res[:,], pls))
+            timage_res = np.vstack((timage_res, pls))
 
     # postprocessing includes removal of small connected components, hole filling and mapping of small components to
     # neighbors
