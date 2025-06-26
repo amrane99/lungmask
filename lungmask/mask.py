@@ -64,7 +64,8 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
         for X in tqdm(dataloader_val):
             X = X.float().to(device)
             prediction = model(X)
-            pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
+            # pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
+            pls = np.max(prediction.detach().cpu().numpy().astype(np.uint8), 1)[1]
             timage_res = np.vstack((timage_res, pls))
 
     # postprocessing includes removal of small connected components, hole filling and mapping of small components to
