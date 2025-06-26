@@ -60,7 +60,7 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
 
     timage_res = np.empty((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
     
-    print(inimg_raw.shape)
+    print(tvolslices[0].shape, tvolslices.shape)
     # timage_res = np.empty_like((np.append(0, tvolslices[0].shape)), dtype=np.uint8)
     # print(tvolslices[0].shape)
 
