@@ -66,10 +66,10 @@ def apply(image, model=None, force_cpu=False, batch_size=20, volume_postprocessi
             X = X.float().to(device)
             prediction = model(X)
             # pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
-            pls = np.max(prediction.detach().cpu().numpy().astype(np.uint8), 1)#[1]
+            pls = np.max(prediction.detach().cpu().numpy().astype(np.uint8), 0)[1]
             timage_res = np.vstack((timage_res, pls))
     print(timage_res.shape, pls.shape)
-    timage_res = timage_res[np.newaxis, ...]
+    #timage_res = timage_res[np.newaxis, ...]
 
     # postprocessing includes removal of small connected components, hole filling and mapping of small components to
     # neighbors
